@@ -13,7 +13,7 @@ module.exports = class Recruitment extends Sequelize.Model {
                 allowNull: true,
             },
             reward: {
-                type: Sequelize.STRING(100),
+                type: Sequelize.INTEGER,
                 allowNull: false,
             },
             content: {
@@ -27,8 +27,8 @@ module.exports = class Recruitment extends Sequelize.Model {
 
         }, {
             sequelize,
-            timestamps: true,
-            underscored: false,
+            timestamps: false,
+            underscored: true,
             modelName: 'Recruitment',
             tableName: 'recruitments',
             paranoid: true,
@@ -38,7 +38,7 @@ module.exports = class Recruitment extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Recruitment.belongsToMany(db.User,{through : "applay"});
-        db.Recruitment.belongsTo(db.Company);
+        db.Recruitment.hasMany(db.Application,{foreignKey: "recruitment_id", sourceKey:"id"});
+        db.Recruitment.belongsTo(db.Company,{foreignKey: "company_id" , targetKey:"id"});
     }
 };

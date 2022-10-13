@@ -20,7 +20,7 @@ module.exports = class User extends Sequelize.Model {
     }, {
         sequelize,
         timestamps: false,
-        underscored: false,
+        underscored: true,
         modelName: 'User',
         tableName: 'users',
         paranoid: false,
@@ -30,6 +30,6 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.User.belongsToMany(db.Recruitment,{through : "applay"});
+    db.User.hasMany(db.Application,{foreignKey: "user_id", sourceKey:"id"});
   }
 };

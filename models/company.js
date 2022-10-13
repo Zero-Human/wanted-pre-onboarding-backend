@@ -23,7 +23,7 @@ module.exports = class Company extends Sequelize.Model {
         }, {
             sequelize,
             timestamps: false,
-            underscored: false,
+            underscored: true,
             modelName: 'Company',
             tableName: 'companies',
             paranoid: false,
@@ -33,6 +33,6 @@ module.exports = class Company extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Company.hasMany(db.Recruitment);
+        db.Company.hasMany(db.Recruitment,{foreignKey: "company_id" , sourceKey:"id"});
     }
 };
