@@ -1,12 +1,13 @@
 const express = require('express');
 const morgan = require('morgan');
+const db = require('./models');
 // import indexRouter from './routes';
 const { sequelize } = require('./models');
 const app = express();
 
 app.set('port', process.env.PORT || 8002);
 
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
     .then(() => {
         console.log('데이터베이스 연결 성공');
     })
@@ -17,11 +18,6 @@ sequelize.sync({ force: true })
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-// app.use('/v1', v1);
-// app.use('/v2', v2);
-// app.use('/auth', authRouter);
-// app.use('/', indexRouter);
 
 app.use((req, res, next) => {
     const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
