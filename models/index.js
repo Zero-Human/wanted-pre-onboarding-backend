@@ -19,7 +19,6 @@ User.init(sequelize);
 Company.init(sequelize);
 Recruitment.init(sequelize);
 
-
 User.associate(db);
 Company.associate(db);
 Recruitment.associate(db);

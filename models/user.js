@@ -10,7 +10,7 @@ module.exports = class User extends Sequelize.Model {
         },
         email: {
             type: Sequelize.STRING(40),
-            allowNull: true,
+            allowNull: false,
             unique: true,
         },
         nick: {
@@ -30,6 +30,6 @@ module.exports = class User extends Sequelize.Model {
   }
 
   static associate(db) {
-
+    db.User.belongsToMany(db.Recruitment,{through : "applay"});
   }
 };
