@@ -10,7 +10,7 @@ module.exports = class Recruitment extends Sequelize.Model {
             },
             position: {
                 type: Sequelize.STRING(100),
-                allowNull: true,
+                allowNull: false,
             },
             reward: {
                 type: Sequelize.INTEGER,
@@ -38,7 +38,7 @@ module.exports = class Recruitment extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Recruitment.hasMany(db.Application,{foreignKey: "recruitment_id", sourceKey:"id"});
-        db.Recruitment.belongsTo(db.Company,{foreignKey: "company_id" , targetKey:"id"});
+        db.Recruitment.hasMany(db.Application,{foreignKey: { name : "recruitment_id", allowNull: false }, sourceKey:"id"});
+        db.Recruitment.belongsTo(db.Company,{foreignKey: { name : "company_id" , allowNull: false }, targetKey:"id"});
     }
 };

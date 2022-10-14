@@ -10,7 +10,7 @@ module.exports = class Company extends Sequelize.Model {
             },
             name: {
                 type: Sequelize.STRING(40),
-                allowNull: true,
+                allowNull: false,
             },
             contry: {
                 type: Sequelize.STRING(15),
@@ -33,6 +33,6 @@ module.exports = class Company extends Sequelize.Model {
     }
 
     static associate(db) {
-        db.Company.hasMany(db.Recruitment,{foreignKey: "company_id" , sourceKey:"id"});
+        db.Company.hasMany(db.Recruitment,{foreignKey:{ name: "company_id", allowNull: false} , sourceKey:"id"});
     }
 };
