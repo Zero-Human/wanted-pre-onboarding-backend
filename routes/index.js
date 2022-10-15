@@ -16,7 +16,6 @@ router.use((req, res, next) => {
 router.use((err, req, res, next) => {
     res.status(err.status || 500);
     res.json({
-        "code":err.status,
         "message":err.message
     });
 });

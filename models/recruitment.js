@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 module.exports = class Recruitment extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
@@ -36,7 +35,6 @@ module.exports = class Recruitment extends Sequelize.Model {
             collate: 'utf8_general_ci',
         });
     }
-
     static associate(db) {
         db.Recruitment.hasMany(db.Application,{foreignKey: { name : "recruitment_id", allowNull: false }, sourceKey:"id"});
         db.Recruitment.belongsTo(db.Company,{foreignKey: { name : "company_id" , allowNull: false }, targetKey:"id"});

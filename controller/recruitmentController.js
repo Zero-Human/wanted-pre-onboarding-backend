@@ -19,7 +19,7 @@ router.post("/", async(req,res,next)=>{
             "content":content,
             "skil":skil
         }).then(()=>{
-            res.status(201).json({ "message":"Created recruitment" });
+            res.status(201).json({ "message":"채용공고 등록하였습니다." });
         }).catch(e => {
             next(e);
         });
@@ -27,7 +27,7 @@ router.post("/", async(req,res,next)=>{
 });
 
 router.get("/", async(req,res,next)=>{ 
-    const search = req.query.search === undefined ? '' : req.query.search;
+    const search = req.query.search === undefined ? '' : req.query.search
     Recruitment.findAll({
         include:[{
             model:Company
@@ -46,7 +46,7 @@ router.get("/", async(req,res,next)=>{
             next();
         }
         else{
-            res.status(200).json(data);
+            res.status(200).json({data});
         }
     }).catch(e => {
         next(e);
@@ -69,12 +69,14 @@ router.get("/:id", async(req,res,next)=>{
         if(data === null || data.length === 0){
             next();
         }else{
-            data
-            console.log(data);
-            res.status(200).json(data);
+            let result = data.toJSON();
+            let swap = [];
+            result.Company.Recruitments.forEach(item => swap.push(item.id));
+            result["recruitments"] = swap;
+            delete result.Company.Recruitments;;
+            res.status(200).json(result);
         }
     }).catch(e => {
-        console.log(e);
         next(e);
     });
 });
@@ -88,13 +90,13 @@ router.patch("/:id", async(req,res,next)=>{
         "content":content,
         "skil":skil
     },{
-        where:{id:id}
-    }).then((result)=>{
-        console.log(result)
-        if(!result[0]){
+        where:{id:id},
+        individualHooks: true,
+    }).then(([updated,recruitment])=>{
+        if(recruitment.length === 0){
             next();
         }else{
-            res.status(200).json({ "message":"Update recruitment" });
+            res.status(200).json({ "message":"채용공고를 수정하였습니다." });
         }
     }).catch(e => {
         next(e);
@@ -109,7 +111,7 @@ router.delete("/:id", async(req,res,next)=>{
         if(!result){
             next();
         }else{
-            res.status(200).json({ "message":"Delete recruitment" });
+            res.status(200).json({ "message":"채용공고를 삭제하였습니다." });
         }
     }).catch(e => {
         next(e);

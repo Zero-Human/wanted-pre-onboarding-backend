@@ -2,9 +2,10 @@
   "name": "wanted",
   "version": "0.0.1",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app"
+    "start": "nodemon server",
+    "test": "jest --coverage --verbose"
   },
   "author": "",
   "license": "MIT",
@@ -20,6 +21,7 @@
     "@babel/core": "^7.19.3",
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.4",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "supertest": "^6.3.0"
   }
 }
