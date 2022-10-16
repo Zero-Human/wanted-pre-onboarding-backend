@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server",
-    "test": "jest --coverage --verbose"
+    "test": "env NODE_ENV=test jest --detectOpenHandles --coverage --verbose"
   },
   "author": "",
   "license": "MIT",

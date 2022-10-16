@@ -29,6 +29,7 @@ router.post("/", async(req,res,next)=>{
 router.get("/", async(req,res,next)=>{ 
     const search = req.query.search === undefined ? '' : req.query.search
     Recruitment.findAll({
+        attributes:{ exclude: ['content'] },
         include:[{
             model:Company
         }],
@@ -46,7 +47,7 @@ router.get("/", async(req,res,next)=>{
             next();
         }
         else{
-            res.status(200).json({data});
+            res.status(200).json(data);
         }
     }).catch(e => {
         next(e);

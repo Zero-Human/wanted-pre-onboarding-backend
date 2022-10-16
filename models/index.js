@@ -3,7 +3,8 @@ const User = require('./user');
 const Company = require('./company');
 const Recruitment = require('./recruitment');
 const Application = require('./application');
-const config = require('../config/config')["development"];
+const env = process.env.NODE_ENV || 'development';
+const config = require('../config/config')[env];
 
 
 const db = {};

@@ -16,7 +16,7 @@ describe("채용 공고 지원",()=>{
         await request(app)
             .post('/users/1/apply')
             .send({
-                "recruitmentId":170
+                "recruitmentId":2
             })
             .expect(201)
             .expect({  message: "채용공고에 지원하였습니다." });
@@ -26,7 +26,7 @@ describe("채용 공고 지원",()=>{
         await request(app)
             .post('/users/1/apply')
             .send({
-                "recruitmentId":170
+                "recruitmentId":2
             })
             .expect(200)
             .expect({  message: "지원했던 채용공고입니다." });
