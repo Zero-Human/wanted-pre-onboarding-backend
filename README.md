@@ -1,5 +1,5 @@
 # 백엔드 코스 - 5차 선발과제 
-Node.js, Mysql, Sequelize, 
+Node.js(Express.js), Mysql, Sequelize, 
 ## 요구사항 분석
 
 ---
@@ -7,6 +7,25 @@ Node.js, Mysql, Sequelize,
 #### 1\. 채용공고 등록
 
 -   회사를 등록한 후 채용공고를 등록할 수 있습니다.
+
+POST /recruitments
+```
+Request(Body) :
+{
+  "companyId":1,
+  "position":"백엔드 개발자",
+  "reward":100000,
+  "content":"백엔드 개발 및 유지보수",
+  "skil":"node.js"
+}
+```
+```
+Response :
+{
+  "message": "채용공고 등록하였습니다."
+}
+```
+
 
 #### 2\. 채용공고 수정
 
