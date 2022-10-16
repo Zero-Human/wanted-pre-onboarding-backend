@@ -7,6 +7,7 @@ Node.js(Express.js), Mysql, Sequelize,
 #### 1\. 채용공고 등록
 
 -   회사를 등록한 후 채용공고를 등록할 수 있습니다.
+-   Body로 받은 내용을 DB에 저장합니다.
 
 POST /recruitments
 ```
@@ -25,7 +26,6 @@ Response :
   "message": "채용공고 등록하였습니다."
 }
 ```
-- Body로 받은 내용을 DB에 저장합니다.
 
 #### 2\. 채용공고 수정
 
